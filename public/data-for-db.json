@@ -1,0 +1,65 @@
+[
+    {
+      "Title": "Um casamento arranjado",
+      "Img": "https://covers.openlibrary.org/b/id/14321120-L.jpg",
+      "Author":" Zana kheiron",
+      "Genre": "Drama",
+      "Publication Date": "January 2019"
+    },
+    {
+      "Title": "The 48 laws of power",
+      "Img": "https://covers.openlibrary.org/b/id/9573841-L.jpg",
+      "Author": " Robert Greene",
+      "Genre": "Self Dependent",
+      "Publication Date": "1998"
+    },
+    {
+      "Title": "Atomic Habits",
+      "Img": "https://covers.openlibrary.org/b/id/9279057-L.jpg",
+      "Author": "James Clear and Àlex Guàrdia i Berdiell",
+      "Genre": "Self Dependent",
+      "Publication Date": "2018"
+    },
+    {
+      "Title": "Rich dad, poor dad",
+      "Img": "https://covers.openlibrary.org/b/id/13778173-L.jpg",
+      "Author": " Robert T. Kiyosaki, Sharon L. Lechter, and Tim Wheeler",
+      "Genre": "Motivational",
+      "Publication Date": "1998"
+    },
+    {
+      "Title": "Harry Potter and the Sorcerer's Stone",
+      "Img": "https://covers.openlibrary.org/b/id/14362634-L.jpg",
+      "Author": " J. K. Rowling",
+      "Genre": "Fantasy",
+      "Publication Date": "1997"
+    },
+    {
+      "Title": "Le trône de fer",
+      "Img": "https://ia601401.us.archive.org/view_archive.php?archive=/32/items/l_covers_0008/l_covers_0008_13.tar&file=0008133585-L.jpg",
+      "Author": " George R. R. Martin",
+      "Genre": "Fantasy",
+      "Publication Date": "2011"
+    },
+    {
+      "Title": "The Games People Play",
+      "Img": "https://covers.openlibrary.org/b/id/13145492-L.jpg",
+      "Author": "Eric Berne",
+      "Genre": "Psychological",
+      "Publication Date": "August 12, 1979"
+    },
+    {
+      "Title": "Harry Potter and the Chamber of Secrets",
+      "Img": "https://openlibrary.org/works/OL82537W/Harry_Potter_and_the_Chamber_of_Secrets?edition=ia%3Aharrypottertajem0000rowl",
+      "Author": " J. K. Rowlingr",
+      "Genre": "Fantasy",
+      "Publication Date": "1998"
+    },
+    {
+      "Title": "It",
+      "Img": "https://covers.openlibrary.org/b/id/12670684-L.jpg",
+      "Author": " Stephen King",
+      "Genre": "Mystery",
+      "Publication Date": "1986 "
+    }
+  ]
