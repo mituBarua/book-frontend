@@ -27,10 +27,10 @@ export default function BookDetails() {
                 <p>Genre:  {book?.Gennre}</p>
                 <p>Publications Date : {book?.PublicationDate}</p>
                 <p className="text-xl">Rating: {book?.reviews}</p>
-                <div>
-                    {/* <Link to={}> */}
+                <div> 
+                    <Link to={`/edit-book/${id}`}>
                     <Button className='mr-4'>Edit</Button>
-                    {/* </Link> */}
+                    </Link>
 
                     <Button onClick={handleDelete}>Delete</Button>
                 </div>
