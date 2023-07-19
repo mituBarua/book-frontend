@@ -1,31 +1,33 @@
 import { useGetBooksQuery } from '@/redux/features/books/bookApi';
-import { allBook, filterGenre, removeSearch, searchBook } from '@/redux/features/books/bookSlice';
+import { allBook, setFilterGenre, removeSearch, searchBook } from '@/redux/features/books/bookSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IBook } from '@/types/globalTypes';
 import React, { useEffect, useState } from 'react';
 import AllBook from './AllBook';
-import Books from './AllBook'
+
 
 export default function AllBooks() {
   const [searchQuery, setSearchQuery] = useState('');
-  const { data, isLoading } = useGetBooksQuery(undefined);
+  const { data } = useGetBooksQuery(undefined);
   const dispatch = useAppDispatch();
   const bookData = data?.data;
   const { filteredBooks, books } = useAppSelector(state => state.book)
-  const [selected, setSelected] = useState('');
+
   dispatch(allBook(bookData));
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const filterGenre = useAppSelector((state) => state.book.filterGenre);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
     dispatch(searchBook(searchQuery));
   };
   const handleRemoveSearch = () => {
     dispatch(removeSearch());
   }
   const handleChange = (event) => {
-    console.log(event.target.value);
-    dispatch(filterGenre(selected));
-  
+    const selectedGenre = event.target.value;
+    dispatch(setFilterGenre(selectedGenre));
+
   }
 
 
@@ -41,7 +43,7 @@ export default function AllBooks() {
         <button className='mx-4' onClick={handleRemoveSearch}>X</button>
 
 
-        <select className='py-2 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg' value={selected} onChange={handleChange}>
+        <select className='py-2 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg' value={filterGenre} onChange={handleChange}>
           <option value="">Choose Genre ..</option>
           <option value='Drama'>Drama</option>
           <option value='Self Dependent'>Self Dependent</option>
@@ -51,7 +53,7 @@ export default function AllBooks() {
           <option value='Mystery'>Mystery</option>
 
         </select>
-       
+
       </div>
       <div className="grid grid-cols-4 gap-2">
 

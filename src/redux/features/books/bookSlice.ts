@@ -9,11 +9,13 @@ import { IBook } from "@/types/globalTypes";
 
 interface IBookStore {
   books: IBook[];
-  filteredBooks: IBook[]
+  filteredBooks: IBook[];
+  filterGenre: string;
 }
 const initialState: IBookStore = {
   books: [],
-  filteredBooks: []
+  filteredBooks: [],
+  filterGenre: '',
 }
 const bookSlice = createSlice({
   name: 'book',
@@ -25,30 +27,39 @@ const bookSlice = createSlice({
       // state.filteredBooks = action.payload;
 
     },
-   
+
     removeSearch: (state) => {
       state.filteredBooks = [];
     },
     searchBook: (state, action: PayloadAction<string>) => {
       let newSearchBooks: WritableDraft<IBook>[] = [];
       state.books.map((book) => {
-        if (book.Title!.search(action.payload) >= 0 
+        if (book.Title!.search(action.payload) >= 0
           || book.Genre!.search(action.payload) >= 0
           || book.Author!.search(action.payload) >= 0) {
           newSearchBooks.push(book);
         }
       })
       state.filteredBooks = newSearchBooks;
-    
+
     },
-    filterGenre:(state, action: PayloadAction<string>) => {
-      const Genre = action.payload;
-      console.log('genre',Genre)
-      state.filteredBooks = state.books.filter((book) => book.Genre === Genre);
-      console.log('genre',state.filteredBooks)
-    }
+    setFilterGenre: (state, action: PayloadAction<string>) => {
+
+      state.filterGenre = action.payload;
+    
+      state.filteredBooks = state.books.filter((book) =>
+        book.Genre?.includes(action.payload)
+      );
+    
+     
+    },
+    clearFilterGenre(state) {
+      state.filterGenre = initialState.filterGenre;
+      state.filteredBooks = [];
+    },
+
   },
 });
-export const { searchBook, allBook,removeSearch,filterGenre } = bookSlice.actions;
+export const { searchBook, allBook, removeSearch, setFilterGenre } = bookSlice.actions;
 
 export default bookSlice.reducer;

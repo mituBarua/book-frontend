@@ -8,7 +8,8 @@ import { Link,  useNavigate, useParams } from 'react-router-dom';
 export default function BookDetails() {
     const { id } = useParams();
     const { data: book, isLoading, error } = useGetSingleBookQuery(id);
-   const [deleteBook, {  isError }] = useDeleteBookMutation();
+  console.log(book);
+    const [deleteBook, {  isError }] = useDeleteBookMutation();
    const navigate = useNavigate();
     const handleDelete = () => {
         window.confirm("Are you sure want to delete?");
@@ -24,7 +25,7 @@ export default function BookDetails() {
             <div className="w-[50%] space-y-3">
                 <h1 className="text-3xl font-semibold">Title : {book?.Title}</h1>
                 <p>Author:  {book?.Author}</p>
-                <p>Genre:  {book?.Gennre}</p>
+                <p>Genre:  {book?.Genre}</p>
                 <p>Publications Date : {book?.PublicationDate}</p>
                 <p className="text-xl">Rating: {book?.reviews}</p>
                 <div> 

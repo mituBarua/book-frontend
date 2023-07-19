@@ -17,7 +17,9 @@ interface AddUpdatedFormInputs {
     Title: string;
     Author: string;
     Genre: string;
-    PublicationDate: string
+    PublicationDate: string;
+    reviews:number;
+
 }
 
 export default function EditBook({ className, ...props }: UserAuthFormProps) {
@@ -33,52 +35,49 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
         Author: "",
         Img: "",
         Genre: "",
-        PublicationDate: ""
-        // Other form fields
+        PublicationDate: "",
+        reviews:""
+      
     });
     useEffect(() => {
         if (book) {
+
             setFormData({
                 Title: book.Title,
                 Author: book.Author,
                 Genre: book.Genre,
                 Img: book.Img,
-                PublicationDate: book.PublicationDate
-                // Other form fields
+                PublicationDate: book.PublicationDate,
+               reviews:book.reviews
             });
         }
     }, [book]);
+
     const handleInputChange = (event) => {
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             [event.target.name]: event.target.value,
-        });
-        console.log(event.target.value)
+        }));
+
     };
     const handleUpdate = (event, data: AddUpdatedFormInputs) => {
+        event.preventDefault();
         const updatedBookData = {
-            id: book.id,
             ...formData,
-        };
-        updateBook(updatedBookData)
-            .unwrap()
-            .then(() => {
-                // Handle update success
-                console.log("Book updated successfully");
-            })
-            .catch((error) => {
-                // Handle update error
-                console.error("Error updating book:", error);
-            });
+            id:book._id
+        }
+        updateBook( updatedBookData );
         toast({
             description: 'Book Updated',
         });
         navigate("/");
+        window.location.reload();
+
     };
     return (
         <div>
-            <div className={cn(className)} {...props}>
-                <form onSubmit={handleUpdate}>
+            <div className='flex align-center justify-center mt-4' {...props}>
+                <form className='w-1/2' onSubmit={handleUpdate}>
                     <div className="grid gap-2">
                         <div className="grid gap-1">
                             <Label className="sr-only" htmlFor="title">
@@ -91,9 +90,10 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
                                 autoCapitalize="none"
                                 onChange={handleInputChange}
                                 value={formData.Img}
-                            // {...register('Img', { required: 'Book Image is required' })}
+                                name="Img"
+
                             />
-                            {/* {errors.Title && <p>{errors.Title.message}</p>} */}
+
                             <Label className="sr-only" htmlFor="title">
                                 Title
                             </Label>
@@ -104,9 +104,10 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
                                 autoCapitalize="none"
                                 onChange={handleInputChange}
                                 value={formData.Title}
-                            // {...register('Title', { required: 'Title is required' })}
+                                name="Title"
+
                             />
-                            {/* {errors.Title && <p>{errors.Title.message}</p>} */}
+
                             <Label className="sr-only" htmlFor="title">
                                 Author
                             </Label>
@@ -115,10 +116,11 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
                                 placeholder="Book Author"
                                 type="text"
                                 onChange={handleInputChange}
+                                name="Author"
                                 value={formData.Author}
-                            // {...register('Author', { required: 'Author is required' })}
+
                             />
-                            {/* {errors.Author && <p>{errors.Author.message}</p>} */}
+
                             <Label className="sr-only" htmlFor="title">
                                 Genre
                             </Label>
@@ -128,10 +130,11 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
                                 type="text"
                                 autoCapitalize="none"
                                 onChange={handleInputChange}
+                                name="Genre"
                                 value={formData.Genre}
-                            // {...register('Genre', { required: 'Genre is required' })}
+
                             />
-                            {/* {errors.Genre && <p>{errors.Genre.message}</p>} */}
+
                             <Label className="sr-only" htmlFor="title">
                                 Publication Date
                             </Label>
@@ -141,10 +144,22 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
                                 type="text"
                                 autoCapitalize="none"
                                 onChange={handleInputChange}
+                                name="PublicationDate"
                                 value={formData.PublicationDate}
-                            // {...register('PublicationDate', { required: 'Publication Date is required' })}
                             />
-                            {/* {errors.PublicationDate && <p>{errors.PublicationDate.message}</p>} */}
+                             <Label className="sr-only" htmlFor="title">
+                               Reviews
+                            </Label>
+                            <Input
+                                id="reviews"
+                                placeholder="Reviews"
+                                type="text"
+                                autoCapitalize="none"
+                                onChange={handleInputChange}
+                                name="reviews"
+                                value={formData.reviews}
+                            />
+
                         </div>
                         <Button>Update Book</Button>
                     </div>

@@ -21,13 +21,15 @@ const routes = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      {
-        path: '/products',
-        element: <Products />,
-      },
+
       {
         path: '/book-details/:id',
-        element: <BookDetails />,
+        element: (
+          <PrivateRoute>
+            <BookDetails />,
+          </PrivateRoute>
+        ),
+
       },
       {
         path: '/add-new',
@@ -35,7 +37,12 @@ const routes = createBrowserRouter([
       },
       {
         path: '/edit-book/:id',
-        element: <EditBook />,
+        element: (
+          <PrivateRoute>
+            <EditBook />,
+          </PrivateRoute>
+        ),
+
       },
       {
         path: '/checkout',

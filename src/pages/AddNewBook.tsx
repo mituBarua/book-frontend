@@ -33,7 +33,6 @@ export default function AddNewBook({ className, ...props }: UserAuthFormProps) {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const onSubmit = (data: AddNewFormInputs) => {
-
         postBook({ data });
         toast({
             description: 'Book Added',
@@ -42,8 +41,8 @@ export default function AddNewBook({ className, ...props }: UserAuthFormProps) {
     };
     return (
         <div>
-            <div className={cn(className)} {...props}>
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='flex align-center justify-center mt-4' {...props}>
+                <form className='w-1/2' onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid gap-2">
                         <div className="grid gap-1">
                             <Label className="sr-only" htmlFor="title">
