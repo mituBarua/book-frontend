@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -8,25 +6,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { IBook } from "@/types/globalTypes"
-import { Link } from "react-router-dom"
+} from "@/components/ui/card";
+import { IBook } from "@/types/globalTypes";
+import { Link } from "react-router-dom";
 
 interface IProps {
   book: IBook;
 }
 
 export default function AllBook({ book }: IProps) {
-  const { _id, Title, Author, Genre, Img, PublicationDate,reviews } = book;
+  const { _id, Title, Author, Genre, Img, PublicationDate } = book;
 
   return (
     <Card className="w-[350px]">

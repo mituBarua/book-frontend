@@ -1,33 +1,18 @@
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useForm } from 'react-hook-form';
-import { useAppDispatch } from '@/redux/hooks';
-import { useGetSingleBookQuery, usePostBookMutation, useUpdateBookMutation } from '@/redux/features/books/bookApi';
+import { useGetSingleBookQuery, useUpdateBookMutation } from '@/redux/features/books/bookApi';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from '@/components/ui/use-toast';
 import { useEffect, useState } from 'react';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
-interface AddUpdatedFormInputs {
-    Img: string;
-    Title: string;
-    Author: string;
-    Genre: string;
-    PublicationDate: string;
-    reviews:number;
-
-}
-
 export default function EditBook({ className, ...props }: UserAuthFormProps) {
     const { id } = useParams();
 
-    const { data: book, isLoading, isError } = useGetSingleBookQuery(id);
-
-    const dispatch = useAppDispatch();
+    const { data: book } = useGetSingleBookQuery(id);
     const [updateBook] = useUpdateBookMutation();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -53,14 +38,14 @@ export default function EditBook({ className, ...props }: UserAuthFormProps) {
         }
     }, [book]);
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
         setFormData(prev => ({
             ...prev,
             [event.target.name]: event.target.value,
         }));
 
     };
-    const handleUpdate = (event, data: AddUpdatedFormInputs) => {
+    const handleUpdate = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         const updatedBookData = {
             ...formData,

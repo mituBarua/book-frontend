@@ -2,7 +2,7 @@ import { useGetBooksQuery } from '@/redux/features/books/bookApi';
 import { allBook, setFilterGenre, removeSearch, searchBook } from '@/redux/features/books/bookSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IBook } from '@/types/globalTypes';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AllBook from './AllBook';
 
 
@@ -17,14 +17,14 @@ export default function AllBooks() {
 
   const filterGenre = useAppSelector((state) => state.book.filterGenre);
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     dispatch(searchBook(searchQuery));
   };
   const handleRemoveSearch = () => {
     dispatch(removeSearch());
   }
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: any; }; }) => {
     const selectedGenre = event.target.value;
     dispatch(setFilterGenre(selectedGenre));
 

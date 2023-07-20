@@ -1,15 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { useDeleteBookMutation, useGetSingleBookQuery } from '@/redux/features/books/bookApi';
-import { useAppDispatch } from '@/redux/hooks'
-import React from 'react'
-
 import { Link,  useNavigate, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
     const { id } = useParams();
-    const { data: book, isLoading, error } = useGetSingleBookQuery(id);
+    const { data: book} = useGetSingleBookQuery(id);
   console.log(book);
-    const [deleteBook, {  isError }] = useDeleteBookMutation();
+    const [deleteBook] = useDeleteBookMutation();
    const navigate = useNavigate();
     const handleDelete = () => {
         window.confirm("Are you sure want to delete?");

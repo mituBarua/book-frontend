@@ -5,7 +5,7 @@ import NotFound from '@/pages/NotFound';
 import Home from '@/pages/Home';
 import Signup from '@/pages/Signup';
 
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './privateRoute';
 import BookDetails from '@/pages/BookDetails';
 import AddNewBook from '@/pages/AddNewBook';
 import EditBook from '@/pages/EditBook';
